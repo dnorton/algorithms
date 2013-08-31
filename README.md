@@ -10,5 +10,6 @@ https://class.coursera.org/algs4partI-003/lecture/index
 tasks
 =====
 
-[ ] set up sbt file
+[x] set up sbt file
+[ ] set IDEA_JDK variable to ensure java compatibility
 [ ] implement FindUnion example
