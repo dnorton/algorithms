@@ -9,4 +9,15 @@ object UnionFind extends App {
     println(i)
   }
 
+  val unionFind = new UnionFind()
+  unionFind.union(1, 2)
+
+}
+
+class UnionFind {
+
+  def union(a:Int, b:Int):Unit = {
+    Console.println("union of " + a + "+" + b)
+  }
+
 }
