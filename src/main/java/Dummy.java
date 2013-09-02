@@ -1,7 +1,7 @@
 /**
  * Created with IntelliJ IDEA.
  */
-public class UnionFindJava {
+public class Dummy {
 
     // type "psvm" and hit Tab to auto expand main method
     public static void main(String[] args) {
