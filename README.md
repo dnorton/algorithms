@@ -10,6 +10,14 @@ https://class.coursera.org/algs4partI-003/lecture/index
 tasks
 =====
 
-[x] set up sbt file
-[ ] set IDEA_JDK variable to ensure java compatibility
-[ ] implement FindUnion example
+[x] set up sbt file  
+[x] set IDEA_JDK variable to ensure java compatibility  
+[x] implement FindUnion example  
+
+Colophon
+========
+
+- Java 1.7
+- scala 2.10.2
+- sbt 
+- IntelliJ 12.1.4 (64bit)
