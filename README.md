@@ -7,12 +7,8 @@ Most of the code is written to complete exercises from:
 
 https://class.coursera.org/algs4partI-003/lecture/index
 
-tasks
-=====
-
-[x] set up sbt file  
-[x] set IDEA_JDK variable to ensure java compatibility  
-[x] implement FindUnion example  
+The License information for the jars in lib are under the GPLv3. Details for the jars and the license can be
+found in `lib/README.md`.
 
 Colophon
 ========
