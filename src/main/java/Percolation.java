@@ -1,13 +1,15 @@
 /**
  * Percolation simulation. This is a problem domain for the UnionFind algorithm.
+ *
+ * Compilation: javac Percolation.java
+ *
+ * @author Daniel Norton
  */
 public class Percolation {
 
-    private int dimensionSize;
+    private int dimensionSize; //the size of each dimension in the grid
     private int totalSize; //the total size of the flattened arrays
-//    private int[] items; // list of items (ints) with their identities set to their index values from 0 to N*N -1
     private boolean[] open; //same array as items with boolean property, open
-//    private int[] componentSize; //the totalSize of the current site's component used for weighted union compare
     private int virtualTopIndex;
     private int virtualBottomIndex;
     private WeightedQuickUnionUF quickUnionUF;
@@ -17,12 +19,16 @@ public class Percolation {
         this.totalSize = N*N;
         open = new boolean[totalSize];
         quickUnionUF = new WeightedQuickUnionUF(totalSize + 2); //the 2 additional arrays are for the virtual top and bottom
-        virtualTopIndex = totalSize + 1;
-        virtualBottomIndex = totalSize + 2;
-//        initializeArrays(totalSize);
+        virtualTopIndex = totalSize;
+        virtualBottomIndex = totalSize + 1;
     }
 
-    //TODO: incomplete
+    /**
+     * Set the site to open and connect it with any open surrounding sites
+     *
+     * @param i row position
+     * @param j column position
+     */
     public void open(int i, int j) {
         if (isOpen(i,j)) return;
 
@@ -33,7 +39,9 @@ public class Percolation {
             quickUnionUF.union(virtualTopIndex, position);
         }
 
+        System.out.println("i=" + i);
         if (i == dimensionSize) {
+            System.out.println("got here " + position);
             quickUnionUF.union(position, virtualBottomIndex);
         }
 
@@ -58,23 +66,38 @@ public class Percolation {
             quickUnionUF.union(position, flattenPosition(i + 1, j));
         }
 
-        System.out.println(quickUnionUF.find(position));
-
-
     }
 
+    /**
+     * is the site open
+     *
+     * @param i row index
+     * @param j column index
+     * @return boolean
+     */
     public boolean isOpen(int i, int j) {
         int position = flattenPosition(i, j);
         return open[position];
     }
 
 
+    /**
+     * Determine whether or not a position connects to a site in the top row
+     * @param i row index
+     * @param j column index
+     * @return boolean
+     */
     public boolean isFull(int i, int j) {
         return quickUnionUF.find(flattenPosition(i, j)) == virtualTopIndex;
     }
 
+    /**
+     * Determine whether or not a component contains a path from the top to the
+     * bottom of the matrix
+     * @return boolean
+     */
     public boolean percolates(){
-        return false;
+        return quickUnionUF.find(virtualBottomIndex) == virtualTopIndex;
     }
 
 
