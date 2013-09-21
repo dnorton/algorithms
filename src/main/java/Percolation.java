@@ -29,6 +29,36 @@ public class Percolation {
         int position = flattenPosition(i,j);
         open[position] = true;
 
+        if (i == 1) {
+            quickUnionUF.union(virtualTopIndex, position);
+        }
+
+        if (i == dimensionSize) {
+            quickUnionUF.union(position, virtualBottomIndex);
+        }
+
+        //check for open sites to the top, left, right, then bottom
+        //top
+        if (i - 1 > 0 && isOpen(i - 1, j)) {
+            quickUnionUF.union(flattenPosition(i - 1, j), position);
+        }
+
+        //left
+        if (j - 1 > 0 && isOpen(i, j - 1)) {
+            quickUnionUF.union(flattenPosition(i, j - 1), position);
+        }
+
+        //right
+        if (j + 1 <= dimensionSize && isOpen(i, j + 1)) {
+            quickUnionUF.union(position, flattenPosition(i, j + 1));
+        }
+
+        //bottom
+        if (i + 1 <= dimensionSize && isOpen(i + 1, j)) {
+            quickUnionUF.union(position, flattenPosition(i + 1, j));
+        }
+
+        System.out.println(quickUnionUF.find(position));
 
 
     }
@@ -40,7 +70,7 @@ public class Percolation {
 
 
     public boolean isFull(int i, int j) {
-        return false;
+        return quickUnionUF.find(flattenPosition(i, j)) == virtualTopIndex;
     }
 
     public boolean percolates(){
