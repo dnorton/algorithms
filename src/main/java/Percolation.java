@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * Percolation simulation. This is a problem domain for the UnionFind algorithm.
  */
@@ -7,20 +5,31 @@ public class Percolation {
 
     private int dimensionSize;
     private int totalSize; //the total size of the flattened arrays
-    private int[] items; // list of items (ints) with their identities set to their index values from 0 to N*N -1
+//    private int[] items; // list of items (ints) with their identities set to their index values from 0 to N*N -1
     private boolean[] open; //same array as items with boolean property, open
-    private int[] componentSize; //the totalSize of the current site's component used for weighted union compare
+//    private int[] componentSize; //the totalSize of the current site's component used for weighted union compare
+    private int virtualTopIndex;
+    private int virtualBottomIndex;
+    private WeightedQuickUnionUF quickUnionUF;
 
     public Percolation(int N) {
         this.dimensionSize = N;
         this.totalSize = N*N;
-        initializeArrays(totalSize);
+        open = new boolean[totalSize];
+        quickUnionUF = new WeightedQuickUnionUF(totalSize + 2); //the 2 additional arrays are for the virtual top and bottom
+        virtualTopIndex = totalSize + 1;
+        virtualBottomIndex = totalSize + 2;
+//        initializeArrays(totalSize);
     }
 
     //TODO: incomplete
     public void open(int i, int j) {
+        if (isOpen(i,j)) return;
+
         int position = flattenPosition(i,j);
         open[position] = true;
+
+
 
     }
 
@@ -36,20 +45,6 @@ public class Percolation {
 
     public boolean percolates(){
         return false;
-    }
-
-    /**
-     * helper method to initialize arrays in the constructor
-     * @param size
-     */
-    private void initializeArrays(int size) {
-        items = new int[size];
-        for (int i = 0; i < size; i++) {
-            items[i] = i;
-        }
-        open = new boolean[size];
-        componentSize = new int[size];
-        Arrays.fill(componentSize, 1);
     }
 
 
