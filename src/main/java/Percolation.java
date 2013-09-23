@@ -39,9 +39,7 @@ public class Percolation {
             quickUnionUF.union(virtualTopIndex, position);
         }
 
-        System.out.println("i=" + i);
         if (i == dimensionSize) {
-            System.out.println("got here " + position);
             quickUnionUF.union(position, virtualBottomIndex);
         }
 
@@ -97,7 +95,7 @@ public class Percolation {
      * @return boolean
      */
     public boolean percolates(){
-        return quickUnionUF.find(virtualBottomIndex) == virtualTopIndex;
+        return quickUnionUF.find(virtualBottomIndex) == quickUnionUF.find(virtualTopIndex);
     }
 
 
