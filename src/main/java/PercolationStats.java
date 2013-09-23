@@ -19,12 +19,12 @@ public class PercolationStats {
 
     // sample mean of percolation threshold
     public double mean() {
-        return 0;
+        return StdStats.mean(results);
     }
 
     // sample standard deviation of percolation threshold
     public double stddev() {
-        return 0;
+        return StdStats.stddev(results);
     }
 
     // returns lower bound of the 95% confidence interval
@@ -44,6 +44,8 @@ public class PercolationStats {
 
         PercolationStats stats = new PercolationStats(N, T);
         stats.runSimulation();
+        System.out.println("mean=" + stats.mean());
+        System.out.println("stdev=" + stats.stddev());
     }
 
     private void runSimulation() {
