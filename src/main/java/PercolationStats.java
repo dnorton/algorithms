@@ -24,17 +24,21 @@ public class PercolationStats {
 
     // sample standard deviation of percolation threshold
     public double stddev() {
-        return StdStats.stddev(results);
+        double stddev = Double.NaN;
+        if (results.length > 1) {
+            stddev = StdStats.stddev(results);
+        }
+        return stddev;
     }
 
     // returns lower bound of the 95% confidence interval
     public double confidenceLo() {
-        return 0;
+        return mean() - (1.96 * stddev()/Math.sqrt(results.length));
     }
 
     // returns upper bound of the 95% confidence interval
     public double confidenceHi() {
-        return 0;
+        return mean() + (1.96 * stddev()/Math.sqrt(results.length));
     }
 
     public static void main(String[] args) {
@@ -44,8 +48,9 @@ public class PercolationStats {
 
         PercolationStats stats = new PercolationStats(N, T);
         stats.runSimulation();
-        System.out.println("mean=" + stats.mean());
-        System.out.println("stdev=" + stats.stddev());
+        System.out.println("mean                    = " + stats.mean());
+        System.out.println("stdev                   = " + stats.stddev());
+        System.out.println("95% confidence interval = " + stats.confidenceLo() + ", " + stats.confidenceHi());
     }
 
     private void runSimulation() {
