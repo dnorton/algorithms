@@ -64,31 +64,10 @@ object UnionFind extends App {
 
   }
 
-  //  val unionFind = new UnionFind()
-//  unionFind.union(1, 2)
-
-
 
   override def main(args:Array[String]) = {
     a = Array[Int](0,1,2,3,4,5,6,7,8,9)
     sz = Array.fill(10)(1)
-//    union(9,8)
-//    union(3,6)
-//    union(7,0)
-//    union(6,9)
-//    union(1,9)
-//    union(7,3)
-
-//    unionWeighted(8,6)
-//    unionWeighted(1,9)
-//    unionWeighted(7,3)
-//    unionWeighted(1,0)
-//    unionWeighted(9,5)
-//    unionWeighted(6,3)
-//    unionWeighted(1,4)
-//    unionWeighted(0,7)
-//    unionWeighted(4,2)
-
     unionWeighted(7,1)
     unionWeighted(5,0)
     unionWeighted(2,4)
